@@ -3,7 +3,7 @@ function myFunction() {
   var list = "";
 
   var startTime = new Date();
-  var endTime = new Date( Date.parse( startTime ) + 10*60*60*1000 );
+  var endTime = new Date( Date.parse( startTime ) + (10+24)*60*60*1000 );
   var options = {
   };
   var calendarId = "xxxxxxxxxxxxxxxxxxxxxxxxxx@group.calendar.google.com"; // a.GoogleカレンダーのID
