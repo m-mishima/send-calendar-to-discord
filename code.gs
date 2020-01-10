@@ -29,15 +29,15 @@ function listupEvent( cal_id, startTime, endTime, options )
   var cal = CalendarApp.getCalendarById(cal_id);
   var events = cal.getEvents( startTime, endTime, options );
   var tnow = new Date();
-  var tsototoi = Utilities.formatDate( new Date( Date.parse( tnow ) - 48*60*60*1000 ), "GMT+0900", "MM月dd日" );
-  var tskinou  = Utilities.formatDate( new Date( Date.parse( tnow ) - 24*60*60*1000 ), "GMT+0900", "MM月dd日" );
-  var tskyou   = Utilities.formatDate( new Date( Date.parse( tnow ) +  0*60*60*1000 ), "GMT+0900", "MM月dd日" );
-  var tsashita = Utilities.formatDate( new Date( Date.parse( tnow ) + 24*60*60*1000 ), "GMT+0900", "MM月dd日" );
-  var tsasatte = Utilities.formatDate( new Date( Date.parse( tnow ) + 48*60*60*1000 ), "GMT+0900", "MM月dd日" );
+  var tsototoi = Utilities.formatDate( new Date( Date.parse( tnow ) - 48*60*60*1000 ), "JST", "MM月dd日" );
+  var tskinou  = Utilities.formatDate( new Date( Date.parse( tnow ) - 24*60*60*1000 ), "JST", "MM月dd日" );
+  var tskyou   = Utilities.formatDate( new Date( Date.parse( tnow ) +  0*60*60*1000 ), "JST", "MM月dd日" );
+  var tsashita = Utilities.formatDate( new Date( Date.parse( tnow ) + 24*60*60*1000 ), "JST", "MM月dd日" );
+  var tsasatte = Utilities.formatDate( new Date( Date.parse( tnow ) + 48*60*60*1000 ), "JST", "MM月dd日" );
   for(var i=0; i < events.length; i++){
     var s = "";
     var t = ""
-    var tsc = Utilities.formatDate( events[i].getStartTime(),"GMT+0900","MM月dd日" );
+    var tsc = Utilities.formatDate( events[i].getStartTime(), "JST", "MM月dd日" );
     switch( tsc ) {
       case tsototoi:
         t = "一昨日";
@@ -62,8 +62,8 @@ function listupEvent( cal_id, startTime, endTime, options )
       s += "(" + t + ")";
     }
     if (!events[i].isAllDayEvent()) {
-      s += Utilities.formatDate(events[i].getStartTime(),"GMT+0900"," HH:mm");
-      s += Utilities.formatDate(events[i].getEndTime(), "GMT+0900","～HH:mm");
+      s += Utilities.formatDate(events[i].getStartTime(), "JST", " HH:mm"  );
+      s += Utilities.formatDate(events[i].getEndTime(),   "JST", "～HH:mm" );
     }
     s += "  " + events[i].getTitle();
     //Logger.log(s);
