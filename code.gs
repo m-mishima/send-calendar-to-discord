@@ -27,12 +27,6 @@ function listupEvent( cal_id, startTime, endTime, options ) {
   var list = "";
   var cal = CalendarApp.getCalendarById(cal_id);
   var events = cal.getEvents( startTime, endTime, options );
-  var tnow = new Date();
-  var tsototoi = Utilities.formatDate( new Date( Date.parse( tnow ) - 48*60*60*1000 ), "JST", "MM月dd日" );
-  var tskinou  = Utilities.formatDate( new Date( Date.parse( tnow ) - 24*60*60*1000 ), "JST", "MM月dd日" );
-  var tskyou   = Utilities.formatDate( new Date( Date.parse( tnow ) +  0*60*60*1000 ), "JST", "MM月dd日" );
-  var tsashita = Utilities.formatDate( new Date( Date.parse( tnow ) + 24*60*60*1000 ), "JST", "MM月dd日" );
-  var tsasatte = Utilities.formatDate( new Date( Date.parse( tnow ) + 48*60*60*1000 ), "JST", "MM月dd日" );
   for(var i=0; i < events.length; i++){
     var ts = "";
     var tsc = "";
@@ -40,7 +34,7 @@ function listupEvent( cal_id, startTime, endTime, options ) {
     var tec = "";
     var s = "";
     tsc = Utilities.formatDate( events[i].getStartTime(), "JST", "MM月dd日" );
-    tec = Utilities.formatDate( events[i].getEndTime(), "JST", "MM月dd日" );
+    tec = Utilities.formatDate( events[i].getEndTime(),   "JST", "MM月dd日" );
     ts = getjapaneserelativeday( events[i].getStartTime() );
     te = getjapaneserelativeday( events[i].getEndTime() );
 
@@ -58,10 +52,11 @@ function listupEvent( cal_id, startTime, endTime, options ) {
       }
     } else {
       s += tsc;
-      s += Utilities.formatDate(events[i].getStartTime(), "JST", "HH:mm"  );
+      s += Utilities.formatDate(events[i].getStartTime(), "JST", " HH:mm"  );
       s += "～";
       if ( tsc != tec ) {
         s += tec;
+        s += " ";
       }
       s += Utilities.formatDate(events[i].getEndTime(),   "JST", "HH:mm" );
     }
